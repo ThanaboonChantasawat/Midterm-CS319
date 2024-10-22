@@ -101,3 +101,21 @@ Part 7
 
   สร้าง function calculateTotalCost เพื่อคำนวณราคาสินค้าทั้งหมด โดยรับค่า products: Product[] และคืนค่า number
     return products.reduce((total, product) => total + product.price, 0); ใช้ reduce ทำให้ array เป็นค่าเดียว และนำ total ไป + กับ product.price โดยที่ total เป็น 0 และ คืนค่าไปเป็น number
+
+Part 8
+
+  สร้างfunction parseProductData รับ parameter เป็น jsonData: string ที่คาดว่าจะมีข้อมูลเกี่ยวกับสินค้า
+  ใช้ try catch
+    const productData = JSON.parse(jsonData); เพื่อแปลงstring JSON เป็นobj JavaScript หากข้อมูลเป็น JSON ที่ถูกต้อง
+
+    if (productData.name && productData.price && productData.category) { ตรวจสอบว่าข้อมูลที่แปลงมา (productData) มี name, price, และ category มั้ย
+            return new Product(productData.name, productData.price, productData.category); ถ้ามี คุณจะสร้างobjใหม่ของ Product โดยใช้ค่าที่ได้จาก productData และคืนค่ากลับ
+        } else {
+            throw new Error("Invalid product data"); ถ้าไม่มีค่าที่จำเป็น จะโยนerrorใหม่ด้วยข้อความ "Invalid product data"
+        } catch (error) { หากมีerrorเกิดขึ้นระหว่างการแปลง JSON หรือการตรวจสอบข้อมูล
+        if (error instanceof Error) { ตรวจสอบว่าerrorที่เกิดขึ้นเป็นประเภท Error หรือไม่
+            return `Error parsing product data: ${error.message}`; ถ้าใช่ คืนค่าข้อความที่บอกว่ามีerrorเกิดขึ้นในระหว่างการแปลงข้อมูล
+        } else {
+            return "Unknown error occurred"; ถ้าไม่ใช่ คืนค่าข้อความ "Unknown error occurred"
+        }
+    }
