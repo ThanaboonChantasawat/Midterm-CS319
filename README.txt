@@ -119,3 +119,29 @@ Part 8
             return "Unknown error occurred"; ถ้าไม่ใช่ คืนค่าข้อความ "Unknown error occurred"
         }
     }
+
+Part 9 
+  สร้างไฟล์ index.html ใน src หลักจะอยู่ในสว่นของ form และ table ที่มีการกำหนด id เพื่อไว้ใช้ กับ jquery
+  <input type="text" id="productName" required>
+  <input type="number" id="productPrice" required>
+  <table id="productTable">
+
+  <script>
+        $(document).ready(function() { ใช้ $(document).ready() เพื่อให้แน่ใจว่า script จะทำงานหลังโหลด DOM เสร็จแล้ว
+            $('#productForm').on('submit', function(event) { ดูว่ามีการส่งแบบฟอร์มมั้ย
+                event.preventDefault(); ทำให้หน้าไม่รีเฟรช
+
+                const productName = $('#productName').val(); ดึงข้อมูลจาก form ที่กรอกเข้ามา
+                const productPrice = parseFloat($('#productPrice').val()).toFixed(2); ใช้เพื่อแปลงราคาจากstringเป็นเลขทศนิยมและจัดรูปแบบให้มี 2 ตำแหน่ง
+
+                const newRow = `<tr><td>${productName}</td><td>$${productPrice}</td></tr>`; สร้างแถวใหม่ในตาราง
+
+                $('#productTable tbody').append(newRow); เพิ่มลงใน tbody
+
+                $('#productName').val(''); เคลียร์แบบ form
+                $('#productPrice').val(''); เคลียร์แบบ form
+
+                alert('Product added successfully!'); แจ้งเตือนว่าเพิ่มแล้ว
+            });
+        });
+    </script>
