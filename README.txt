@@ -121,7 +121,7 @@ Part 8
     }
 
 Part 9 
-  สร้างไฟล์ index.html ใน src หลักจะอยู่ในสว่นของ form และ table ที่มีการกำหนด id เพื่อไว้ใช้ กับ jquery
+  สร้างไฟล์ index.html ใน src หลักqจะอยู่ในส่วนของ form และ table ที่มีการกำหนด id เพื่อไว้ใช้ กับ jquery
   <input type="text" id="productName" required>
   <input type="number" id="productPrice" required>
   <table id="productTable">
