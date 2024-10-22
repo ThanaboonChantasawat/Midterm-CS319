@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a New Product</h1>
+    <form id="productForm">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" required>
+        <label for="productPrice">Product Price:</label>
+        <input type="number" id="productPrice" required>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <h2>Product List</h2>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            $('#productForm').on('submit', function(event) {
+                event.preventDefault();
+
+                const productName = $('#productName').val();
+                const productPrice = parseFloat($('#productPrice').val()).toFixed(2);
+
+                const newRow = `<tr><td>${productName}</td><td>$${productPrice}</td></tr>`;
+
+                $('#productTable tbody').append(newRow);
+
+                $('#productName').val('');
+                $('#productPrice').val('');
+
+                alert('Product added successfully!');
+            });
+        });
+    </script>
+</body>
+</html>
